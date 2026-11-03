@@ -183,6 +183,53 @@ footer span{font-family:var(--script);font-weight:400;font-size:20px}
 .heart{position:fixed;z-index:40;pointer-events:none;font-size:20px;animation:heart 1.4s ease-out forwards}
 @keyframes heart{to{transform:translate(var(--x),-120px) scale(1.3);opacity:0}}
 
+
+/* ---------- polish ---------- */
+.orb{position:absolute;border-radius:50%;filter:blur(50px);opacity:.55;animation:orb 14s ease-in-out infinite alternate}
+@keyframes orb{to{transform:translate(40px,-30px) scale(1.2)}}
+.star{position:absolute;width:var(--s);height:var(--s);background:#fff;clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%);animation:twinkle2 var(--t) ease-in-out infinite;animation-delay:var(--d);filter:drop-shadow(0 0 6px #ffd86b)}
+@keyframes twinkle2{0%,100%{transform:scale(.2) rotate(0);opacity:0}50%{transform:scale(1) rotate(90deg);opacity:1}}
+.hero{position:relative}
+.bunting{position:absolute;top:0;left:0;right:0;height:74px;display:flex;justify-content:space-around;pointer-events:none;overflow:hidden}
+.bunting::before{content:"";position:absolute;left:-2%;right:-2%;top:-14px;height:34px;border-bottom:3px solid rgba(255,255,255,.9);border-radius:50%}
+.flag{width:0;height:0;margin-top:6px;border-left:15px solid transparent;border-right:15px solid transparent;border-top:38px solid var(--c);transform-origin:50% -6px;animation:flag 3s ease-in-out infinite;animation-delay:var(--d);filter:drop-shadow(0 3px 2px rgba(150,80,130,.18))}
+.flag:nth-child(even){margin-top:14px}
+@keyframes flag{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(7deg)}}
+.stage{isolation:isolate}
+.stage::before{content:"";position:absolute;inset:-22%;border-radius:50%;z-index:-2;background:radial-gradient(circle,#fff 0,rgba(255,255,255,.75) 32%,rgba(255,255,255,0) 68%)}
+.stage::after{content:"";position:absolute;inset:-34%;border-radius:50%;z-index:-1;background:repeating-conic-gradient(rgba(255,255,255,.65) 0 8deg,transparent 8deg 24deg);
+  -webkit-mask:radial-gradient(circle,#000 18%,transparent 66%);mask:radial-gradient(circle,#000 18%,transparent 66%);animation:spin 50s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.name span{background-image:linear-gradient(180deg,#ff6fa8 0%,#c07cff 100%)}
+.occasion span{display:inline-block;padding:2px 18px 6px;border-radius:999px;background:rgba(255,255,255,.7);box-shadow:0 6px 18px rgba(255,111,168,.25)}
+h3.title::before,h3.title::after{content:"✦";font-family:var(--body);font-size:.5em;color:var(--sun);margin:0 .6em;vertical-align:middle;display:inline-block;animation:twinkle 2s ease-in-out infinite}
+.card{background:linear-gradient(160deg,rgba(255,255,255,.92),rgba(255,240,250,.72));border:2px solid #fff;outline:2px dashed rgba(255,143,184,.45);outline-offset:-9px;transition:transform .25s}
+a.card:active,.card:active{transform:scale(.98)}
+.tile{background:linear-gradient(170deg,#fff,#fff0f8)}
+.tile:nth-child(2){background:linear-gradient(170deg,#fff,#f3edff)}.tile:nth-child(3){background:linear-gradient(170deg,#fff,#e8fbf3)}.tile:nth-child(4){background:linear-gradient(170deg,#fff,#fff6e0)}
+
+/* cake */
+.cakewrap{display:flex;flex-direction:column;align-items:center;gap:6px}
+.cakebtn{background:none;width:min(260px,70vw);padding:0;filter:drop-shadow(0 14px 14px rgba(255,111,168,.3));transition:transform .2s}
+.cakebtn:active{transform:scale(.96)}
+.cakebtn svg{width:100%;height:auto;display:block;overflow:visible}
+.flame{transform-box:fill-box;transform-origin:50% 100%;animation:flicker .5s ease-in-out infinite alternate;transition:opacity .4s,transform .4s}
+@keyframes flicker{from{transform:scale(1,1) rotate(-3deg)}to{transform:scale(.88,1.1) rotate(3deg)}}
+.cakebtn.out .flame,.cakebtn.out .glow{opacity:0;transform:scale(.2)}
+.smoke{opacity:0}
+.cakebtn.out .smoke{animation:smoke 2.2s ease-out forwards}
+@keyframes smoke{0%{opacity:.8;transform:translateY(0) scale(.5)}100%{opacity:0;transform:translateY(-50px) scale(1.8)}}
+.glow{animation:twinkle 1.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.wish{font-family:var(--script);color:var(--pink-d);font-size:clamp(20px,6vw,28px);min-height:1.6em;transition:opacity .4s}
+.hint{font-size:14px;font-weight:700;color:var(--ink-s)}
+
+/* bunny */
+.garden{overflow:hidden}
+.bunny{position:absolute;bottom:30px;left:0;width:62px;z-index:2;animation:run 26s linear infinite;pointer-events:none}
+.bunny svg{display:block;animation:hop .7s ease-in-out infinite}
+@keyframes hop{0%,100%{transform:translateY(0) rotate(4deg)}50%{transform:translateY(-22px) rotate(-6deg)}}
+@keyframes run{0%{transform:translateX(-80px) scaleX(1)}48%{transform:translateX(calc(100vw + 10px)) scaleX(1)}50%{transform:translateX(calc(100vw + 10px)) scaleX(-1)}98%{transform:translateX(-80px) scaleX(-1)}100%{transform:translateX(-80px) scaleX(1)}}
+
 @media (min-width:640px){.cards{grid-template-columns:repeat(3,1fr)}section{padding:72px 24px}}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
@@ -200,9 +247,10 @@ footer span{font-family:var(--script);font-weight:400;font-size:20px}
   <button class="btn pulse" id="openBtn">Open 💌</button>
 </div>
 
-<button id="music" aria-label="Toggle music" title="Music">🎵</button>
+<button id="music" aria-label="Toggle music" title="Music">🔇</button>
+<audio id="bgm" src="happy-birthday.mp3" loop preload="auto" playsinline></audio>
 
-<div class="layer" id="sky"></div>
+<div class="layer" id="sky"><i class="orb" style="width:300px;height:300px;left:-80px;top:8vh;background:#ffc2dc"></i><i class="orb" style="width:340px;height:340px;right:-100px;top:40vh;background:#d6c8ff;animation-delay:-5s"></i><i class="orb" style="width:280px;height:280px;left:20vw;bottom:-60px;background:#c4f2dc;animation-delay:-9s"></i></div>
 <div class="layer" id="floaters"></div>
 <div class="layer" id="birds"></div>
 <div class="layer" id="bflies"></div>
@@ -210,6 +258,7 @@ footer span{font-family:var(--script);font-weight:400;font-size:20px}
 
 <main>
   <section class="hero" id="top">
+    <div class="bunting" id="bunting"></div>
     <div class="bismillah">بسم الله الرحمن الرحيم</div>
     <div class="invite">Join us to celebrate</div>
     <h1 class="name" id="name" aria-label="Meerab"></h1>
@@ -299,6 +348,32 @@ footer span{font-family:var(--script);font-weight:400;font-size:20px}
   </section>
 
   <section class="reveal">
+    <h3 class="title">Make a wish</h3>
+    <div class="cakewrap">
+      <button class="cakebtn" id="cake" aria-label="Blow out the candle">
+        <svg viewBox="0 0 240 230">
+          <ellipse cx="120" cy="206" rx="108" ry="15" fill="#fff" stroke="#f3c9de" stroke-width="3"/>
+          <rect x="40" y="128" width="160" height="72" rx="16" fill="#ff9ec7"/>
+          <path d="M40 140 q0 -16 20 -16 h120 q20 0 20 16 v6 q-10 14 -20 0 q-10 14 -20 0 q-10 14 -20 0 q-10 14 -20 0 q-10 14 -20 0 q-10 14 -20 0 q-10 14 -20 0 q-10 14 -20 0z" fill="#fff"/>
+          <g fill="#fff"><circle cx="62" cy="176" r="5"/><circle cx="96" cy="184" r="5"/><circle cx="130" cy="176" r="5"/><circle cx="164" cy="184" r="5"/></g>
+          <g fill="#ffd86b"><circle cx="80" cy="170" r="3.5"/><circle cx="148" cy="168" r="3.5"/><circle cx="182" cy="174" r="3.5"/></g>
+          <rect x="70" y="80" width="100" height="52" rx="14" fill="#c9b6ff"/>
+          <path d="M70 94 q0 -14 16 -14 h68 q16 0 16 14 v4 q-8 12 -16 0 q-8 12 -16 0 q-8 12 -16 0 q-8 12 -16 0 q-8 12 -16 0z" fill="#fff"/>
+          <g fill="#ff7ab0"><circle cx="92" cy="118" r="4"/><circle cx="120" cy="122" r="4"/><circle cx="148" cy="118" r="4"/></g>
+          <rect x="113" y="42" width="14" height="40" rx="4" fill="#ffd86b"/>
+          <path d="M113 52l14-6M113 62l14-6M113 72l14-6" stroke="#fff" stroke-width="3" opacity=".7"/>
+          <line x1="120" y1="42" x2="120" y2="36" stroke="#6b4a63" stroke-width="2"/>
+          <circle class="glow" cx="120" cy="24" r="22" fill="#ffe58a" opacity=".45"/>
+          <g class="flame"><path d="M120 6 Q134 24 120 38 Q106 24 120 6Z" fill="#ffb347"/><path d="M120 18 Q126 28 120 36 Q114 28 120 18Z" fill="#fff3a0"/></g>
+          <g class="smoke" fill="#cfc3d8"><circle cx="120" cy="28" r="6"/><circle cx="126" cy="18" r="5"/></g>
+        </svg>
+      </button>
+      <div class="wish" id="wish">Tap the candle to blow it out 🕯️</div>
+      <div class="hint">…and make a little wish for Meerab 💖</div>
+    </div>
+  </section>
+
+  <section class="reveal">
     <h3 class="title">With love &amp; duas</h3>
     <p class="note">Come shower little <em>Meerab</em> with your love, smiles and duas on her special day.<br>Your presence will make our celebration complete. 🤍</p>
     <div class="actions"><button class="btn pulse" id="confettiBtn">🎉 Pop the Confetti</button></div>
@@ -307,6 +382,7 @@ footer span{font-family:var(--script);font-weight:400;font-size:20px}
   <div class="garden">
     <div class="row" id="garden"></div>
     <div class="grass"></div>
+    <div class="bunny"><svg viewBox="0 0 80 80"><ellipse cx="30" cy="22" rx="7" ry="18" fill="#fff" stroke="#f1d3e3" stroke-width="2" transform="rotate(-8 30 22)"/><ellipse cx="30" cy="24" rx="3.5" ry="12" fill="#ffb9d4" transform="rotate(-8 30 22)"/><ellipse cx="48" cy="20" rx="7" ry="18" fill="#fff" stroke="#f1d3e3" stroke-width="2" transform="rotate(10 48 20)"/><ellipse cx="48" cy="22" rx="3.5" ry="12" fill="#ffb9d4" transform="rotate(10 48 20)"/><ellipse cx="34" cy="62" rx="26" ry="16" fill="#fff" stroke="#f1d3e3" stroke-width="2"/><circle cx="14" cy="64" r="7" fill="#fff" stroke="#f1d3e3" stroke-width="2"/><circle cx="52" cy="48" r="17" fill="#fff" stroke="#f1d3e3" stroke-width="2"/><circle cx="58" cy="45" r="2.4" fill="#3b2a2a"/><ellipse cx="68" cy="50" rx="2.6" ry="2" fill="#ff7ab0"/><ellipse cx="57" cy="54" rx="4" ry="2.6" fill="#ffb9d4" opacity=".8"/><rect x="46" y="72" width="8" height="8" rx="4" fill="#fff" stroke="#f1d3e3" stroke-width="2"/></svg></div>
   </div>
   <footer><span>Meerab's Day</span> · made with love 💖</footer>
 </main>
@@ -468,6 +544,27 @@ if(!reduce){
   }
 })();
 
+
+/* ---------- bunting flags & twinkling stars ---------- */
+(function deco(){
+  const B=$('bunting'), n=isMobile?9:18, cols=['#ff8fb8','#b79cff','#ffd86b','#7fd8ff','#8fe3b5'];
+  for(let i=0;i<n;i++){ const f=document.createElement('i'); f.className='flag'; f.style.cssText=`--c:${cols[i%5]};--d:${(i*.23).toFixed(2)}s`; B.appendChild(f); }
+  const S=$('sky');
+  for(let i=0;i<(isMobile?12:22);i++){ const s=document.createElement('i'); s.className='star';
+    s.style.cssText=`left:${rand(2,96)}vw;top:${rand(4,92)}vh;--s:${rand(8,16)}px;--t:${rand(2.5,5)}s;--d:${-rand(0,5)}s`; S.appendChild(s); }
+})();
+
+/* ---------- cake: tap to blow out the candle ---------- */
+const WISHES=['Wish made! ✨ Happy Birthday Meerab 💖','May all her dreams come true 🌈','Stay blessed, little princess 🤍','Sending love & duas 🌸'];
+let wi=0;
+$('cake').addEventListener('click',e=>{
+  const c=e.currentTarget; if(c.classList.contains('out')) return;
+  c.classList.add('out'); $('wish').textContent=WISHES[wi++%WISHES.length];
+  const r=c.getBoundingClientRect(); burst(r.left+r.width/2,r.top+r.height*.2,120);
+  for(let i=0;i<3;i++) setTimeout(spawnBalloon,i*150);
+  setTimeout(()=>{ c.classList.remove('out'); $('wish').textContent='Tap the candle to blow it out 🕯️'; },6000);
+});
+
 /* ---------- flowers ---------- */
 function flowerHead(c, center='#ffd54f', petals=8){
   let s=''; for(let i=0;i<petals;i++) s+=`<ellipse cx="0" cy="-17" rx="8.5" ry="16" fill="${c}" transform="rotate(${i*360/petals})"/>`;
@@ -496,39 +593,20 @@ addEventListener('pointerdown', e=>{
     h.style.left=e.clientX+'px'; h.style.top=e.clientY+'px'; h.style.setProperty('--x',rand(-50,50)+'px'); document.body.appendChild(h); setTimeout(()=>h.remove(),1500); }
 });
 
-/* ---------- Happy Birthday music (synthesised, no files needed) ---------- */
-const F={G4:392,A4:440,B4:493.88,C5:523.25,D5:587.33,E5:659.25,F5:698.46,G5:783.99,C3:130.81,G2:98,F3:174.61};
-const SONG=[['G4',.75],['G4',.25],['A4',1],['G4',1],['C5',1],['B4',2],
-            ['G4',.75],['G4',.25],['A4',1],['G4',1],['D5',1],['C5',2],
-            ['G4',.75],['G4',.25],['G5',1],['E5',1],['C5',1],['B4',1],['A4',1],
-            ['F5',.75],['F5',.25],['E5',1],['C5',1],['D5',1],['C5',2]];
-const BEAT=.52; let ac, master, musicOn=false, songTimer;
-function note(freq,t,dur,vol=.5,type='sine'){
-  const o=ac.createOscillator(), o2=ac.createOscillator(), g=ac.createGain();
-  o.type=type; o2.type='triangle'; o.frequency.value=freq; o2.frequency.value=freq*2;
-  const g2=ac.createGain(); g2.gain.value=.25; o2.connect(g2).connect(g); o.connect(g); g.connect(master);
-  g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(vol,t+.012); g.gain.exponentialRampToValueAtTime(.001,t+dur*1.6);
-  o.start(t); o2.start(t); o.stop(t+dur*1.7); o2.stop(t+dur*1.7);
-}
-function playSong(){
-  if(!musicOn) return;
-  let t=ac.currentTime+.15;
-  SONG.forEach(([n,b])=>{ note(F[n],t,b*BEAT*.95); t+=b*BEAT; });
-  // gentle bass every 3 beats
-  let bt=ac.currentTime+.15, total=SONG.reduce((s,x)=>s+x[1],0);
-  for(let k=0;k<total/3;k++) note([F.C3,F.G2,F.C3,F.F3,F.C3,F.G2,F.C3,F.C3][k%8],bt+k*3*BEAT,1.2*BEAT,.22,'triangle');
-  songTimer=setTimeout(playSong,(total*BEAT+2.2)*1000);
-}
+/* ---------- Happy Birthday music (real audio file: works with iPhone silent switch) ---------- */
+const bgm = $('bgm'); bgm.volume = .75; let musicOn = false;
+function paintMusic(){ $('music').classList.toggle('on',musicOn); $('music').textContent = musicOn ? '🎵' : '🔇'; }
 function setMusic(on){
-  musicOn=on; $('music').classList.toggle('on',on); $('music').textContent=on?'🎵':'🔇';
-  if(on){ if(!ac){ ac=new (window.AudioContext||window.webkitAudioContext)(); master=ac.createGain(); master.gain.value=.22; master.connect(ac.destination); }
-    ac.resume(); clearTimeout(songTimer); playSong(); }
-  else { clearTimeout(songTimer); if(ac) ac.suspend(); }
+  musicOn = on; paintMusic();
+  if(on){ const p = bgm.play(); if(p) p.catch(()=>{ musicOn=false; paintMusic(); }); }
+  else bgm.pause();
 }
 $('music').onclick = () => setMusic(!musicOn);
-document.addEventListener('visibilitychange',()=>{ if(document.hidden&&musicOn){ clearTimeout(songTimer); ac.suspend(); } else if(musicOn){ ac.resume(); clearTimeout(songTimer); playSong(); } });
+document.addEventListener('visibilitychange',()=>{ if(document.hidden) bgm.pause(); else if(musicOn) bgm.play().catch(()=>{}); });
+paintMusic();
 
 /* ---------- open invitation ---------- */
+if(location.hash==='#open') $('splash').classList.add('gone');
 $('openBtn').onclick = () => {
   $('splash').classList.add('gone');
   setMusic(true);
