@@ -26,18 +26,17 @@
   --script:'Pacifico',cursive; --body:'Quicksand',system-ui,sans-serif; --arabic:'Amiri',serif;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%;overflow-x:clip;max-width:100%;background:#fde9f4}
 body{
-  font-family:var(--body);color:var(--ink);overflow-x:hidden;min-height:100vh;
+  font-family:var(--body);color:var(--ink);overflow-x:clip;max-width:100%;min-height:100vh;touch-action:manipulation;
   background:linear-gradient(180deg,#d9f0ff 0%,#fde9f4 38%,#fff3e6 70%,#e9fbe9 100%);
-  background-attachment:fixed;
 }
 button{font-family:inherit;cursor:pointer;border:0}
 
 /* ---------- ambient layers ---------- */
-.layer{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.layer{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0;contain:layout paint;transform:translateZ(0)}
 .layer.top{z-index:5}
-.cloud{position:absolute;background:#fff;border-radius:100px;opacity:.85;filter:drop-shadow(0 6px 10px rgba(255,160,200,.25));animation:drift linear infinite}
+.cloud{position:absolute;background:#fff;border-radius:100px;opacity:.85;animation:drift linear infinite;will-change:transform}
 .cloud::before,.cloud::after{content:"";position:absolute;background:#fff;border-radius:50%}
 .cloud::before{width:50%;height:160%;left:14%;top:-70%}
 .cloud::after{width:38%;height:130%;right:12%;top:-50%}
@@ -85,7 +84,7 @@ button{font-family:inherit;cursor:pointer;border:0}
 #splash{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;text-align:center;padding:24px;
   background:radial-gradient(circle at 50% 30%,#fff 0,#ffe3ef 45%,#e6dcff 100%);transition:opacity .8s,visibility .8s}
 #splash.gone{opacity:0;visibility:hidden}
-#splash .gift{font-size:84px;animation:pop 1.6s ease-in-out infinite;filter:drop-shadow(0 10px 14px rgba(255,95,158,.35))}
+#splash .gift{font-size:84px;animation:pop 1.6s ease-in-out infinite}
 #splash h2{font-family:var(--script);font-size:clamp(26px,8vw,40px);color:var(--pink-d);font-weight:400}
 #splash p{color:var(--ink-s);font-weight:600}
 @keyframes pop{50%{transform:scale(1.15) rotate(-6deg)}}
@@ -106,12 +105,12 @@ button{font-family:inherit;cursor:pointer;border:0}
 /* ---------- page ---------- */
 main{position:relative;z-index:10}
 section{padding:56px 18px;max-width:760px;margin:0 auto;text-align:center}
-.hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-top:70px;padding-bottom:28px;gap:6px}
+.hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-top:70px;padding-bottom:28px;gap:6px}
 .bismillah{font-family:var(--arabic);font-size:clamp(22px,6vw,30px);color:var(--ink-s)}
 .invite{font-weight:700;letter-spacing:.18em;text-transform:uppercase;font-size:13px;color:var(--ink-s);margin-top:6px}
-.name{font-family:var(--script);font-size:clamp(58px,19vw,128px);line-height:1.15;display:flex;justify-content:center;flex-wrap:wrap}
+.name{font-family:var(--script);font-size:clamp(50px,17vw,128px);line-height:1.15;display:flex;justify-content:center;flex-wrap:wrap}
 .name span{display:inline-block;background:linear-gradient(180deg,#ff7ab0,#b583ff);-webkit-background-clip:text;background-clip:text;color:transparent;
-  animation:letter 2.4s ease-in-out infinite;animation-delay:calc(var(--i)*.14s);filter:drop-shadow(0 4px 0 rgba(255,255,255,.9))}
+  animation:letter 2.4s ease-in-out infinite;animation-delay:calc(var(--i)*.14s);padding:0 .02em}
 @keyframes letter{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-12px) rotate(-3deg)}}
 .occasion{font-family:var(--script);font-size:clamp(20px,5.6vw,32px);color:var(--pink-d)}
 .occasion small{display:block;font-family:var(--body);font-size:14px;color:var(--ink-s);font-weight:600;margin-top:4px;letter-spacing:.04em}
@@ -134,8 +133,8 @@ section{padding:56px 18px;max-width:760px;margin:0 auto;text-align:center}
 h3.title{font-family:var(--script);font-weight:400;font-size:clamp(26px,7.5vw,38px);color:var(--pink-d);margin-bottom:22px}
 
 /* countdown */
-.count{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.tile{background:var(--card);backdrop-filter:blur(6px);border-radius:22px;padding:14px 4px 10px;box-shadow:0 10px 26px rgba(201,150,200,.28);border:2px solid #fff}
+.count{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.tile{background:var(--card);border-radius:22px;padding:14px 4px 10px;box-shadow:0 10px 26px rgba(201,150,200,.28);border:2px solid #fff}
 .tile b{display:block;font-size:clamp(28px,9vw,48px);line-height:1.1;color:var(--pink-d);font-variant-numeric:tabular-nums}
 .tile span{font-size:12px;font-weight:700;color:var(--ink-s);letter-spacing:.1em;text-transform:uppercase}
 .tile:nth-child(2) b{color:#9b7cf5}.tile:nth-child(3) b{color:#3ec9a0}.tile:nth-child(4) b{color:#f5a623}
@@ -147,7 +146,7 @@ h3.title{font-family:var(--script);font-weight:400;font-size:clamp(26px,7.5vw,38
 
 /* details */
 .cards{display:grid;gap:14px}
-.card{background:var(--card);backdrop-filter:blur(6px);border-radius:26px;padding:22px 18px;border:2px solid #fff;box-shadow:0 12px 30px rgba(201,150,200,.28);position:relative;overflow:hidden}
+.card{background:var(--card);border-radius:26px;padding:22px 18px;border:2px solid #fff;box-shadow:0 12px 30px rgba(201,150,200,.28);position:relative;overflow:hidden}
 .card .ic{font-size:36px;display:block;margin-bottom:6px;animation:gbob 2.6s ease-in-out infinite}
 .card h4{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-s);margin-bottom:6px}
 .card p{font-size:clamp(18px,5vw,22px);font-weight:700}
@@ -185,14 +184,15 @@ footer span{font-family:var(--script);font-weight:400;font-size:20px}
 
 
 /* ---------- polish ---------- */
-.orb{position:absolute;border-radius:50%;filter:blur(50px);opacity:.55;animation:orb 14s ease-in-out infinite alternate}
+.orb{position:absolute;border-radius:50%;opacity:.6;-webkit-mask:radial-gradient(circle,#000 0,transparent 70%);mask:radial-gradient(circle,#000 0,transparent 70%)}
 @keyframes orb{to{transform:translate(40px,-30px) scale(1.2)}}
-.star{position:absolute;width:var(--s);height:var(--s);background:#fff;clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%);animation:twinkle2 var(--t) ease-in-out infinite;animation-delay:var(--d);filter:drop-shadow(0 0 6px #ffd86b)}
+.star{position:absolute;width:var(--s);height:var(--s);background:#fff;clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%);animation:twinkle2 var(--t) ease-in-out infinite;animation-delay:var(--d)}
 @keyframes twinkle2{0%,100%{transform:scale(.2) rotate(0);opacity:0}50%{transform:scale(1) rotate(90deg);opacity:1}}
-.hero{position:relative}
+.hero{position:relative;overflow-x:clip;overflow-y:visible}
+main{overflow-x:clip}
 .bunting{position:absolute;top:0;left:0;right:0;height:74px;display:flex;justify-content:space-around;pointer-events:none;overflow:hidden}
 .bunting::before{content:"";position:absolute;left:-2%;right:-2%;top:-14px;height:34px;border-bottom:3px solid rgba(255,255,255,.9);border-radius:50%}
-.flag{width:0;height:0;margin-top:6px;border-left:15px solid transparent;border-right:15px solid transparent;border-top:38px solid var(--c);transform-origin:50% -6px;animation:flag 3s ease-in-out infinite;animation-delay:var(--d);filter:drop-shadow(0 3px 2px rgba(150,80,130,.18))}
+.flag{width:0;height:0;margin-top:6px;border-left:15px solid transparent;border-right:15px solid transparent;border-top:38px solid var(--c);transform-origin:50% -6px;animation:flag 3s ease-in-out infinite;animation-delay:var(--d)}
 .flag:nth-child(even){margin-top:14px}
 @keyframes flag{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(7deg)}}
 .stage{isolation:isolate}
@@ -210,7 +210,7 @@ a.card:active,.card:active{transform:scale(.98)}
 
 /* cake */
 .cakewrap{display:flex;flex-direction:column;align-items:center;gap:6px}
-.cakebtn{background:none;width:min(260px,70vw);padding:0;filter:drop-shadow(0 14px 14px rgba(255,111,168,.3));transition:transform .2s}
+.cakebtn{background:none;width:min(260px,70vw);padding:0;transition:transform .2s}
 .cakebtn:active{transform:scale(.96)}
 .cakebtn svg{width:100%;height:auto;display:block;overflow:visible}
 .flame{transform-box:fill-box;transform-origin:50% 100%;animation:flicker .5s ease-in-out infinite alternate;transition:opacity .4s,transform .4s}
@@ -230,6 +230,7 @@ a.card:active,.card:active{transform:scale(.98)}
 @keyframes hop{0%,100%{transform:translateY(0) rotate(4deg)}50%{transform:translateY(-22px) rotate(-6deg)}}
 @keyframes run{0%{transform:translateX(-80px) scaleX(1)}48%{transform:translateX(calc(100vw + 10px)) scaleX(1)}50%{transform:translateX(calc(100vw + 10px)) scaleX(-1)}98%{transform:translateX(-80px) scaleX(-1)}100%{transform:translateX(-80px) scaleX(1)}}
 
+@media (max-width:639px){.stage::after{animation:none}.cloud::before,.cloud::after{display:block}.orb{display:none}.tile,.card{box-shadow:0 6px 16px rgba(201,150,200,.25)}}
 @media (min-width:640px){.cards{grid-template-columns:repeat(3,1fr)}section{padding:72px 24px}}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
@@ -501,14 +502,14 @@ $('confettiBtn').addEventListener('click', e => {
 /* ---------- ambient: clouds, balloons, petals, birds, butterflies ---------- */
 (function clouds(){
   const L=$('sky');
-  for(let i=0;i<(isMobile?4:6);i++){
+  for(let i=0;i<(isMobile?3:6);i++){
     const c=document.createElement('div'), w=rand(90,170);
     c.className='cloud'; c.style.cssText=`width:${w}px;height:${w*.32}px;top:${rand(3,60)}vh;animation-duration:${rand(60,120)}s;animation-delay:${-rand(0,100)}s;opacity:${rand(.5,.9)}`;
     L.appendChild(c);
   }
 })();
 function spawnBalloon(){
-  const L=$('floaters'); if(L.querySelectorAll('.balloon').length>(isMobile?9:14)) return;
+  const L=$('floaters'); if(L.querySelectorAll('.balloon').length>(isMobile?6:14)) return;
   const b=document.createElement('div'), s=rand(40,68), t=rand(11,18);
   b.className='balloon'; b.style.cssText=`left:${rand(2,92)}vw;--s:${s}px;--c:${pick(COLORS)};--t:${t}s`;
   L.appendChild(b); setTimeout(()=>b.remove(), t*1000+200);
@@ -520,12 +521,12 @@ function spawnPetal(){
 }
 if(!reduce){
   for(let i=0;i<5;i++) setTimeout(spawnBalloon, i*500);
-  setInterval(spawnBalloon, isMobile?2200:1500);
-  setInterval(spawnPetal, isMobile?900:600);
+  setInterval(spawnBalloon, isMobile?3200:1500);
+  setInterval(spawnPetal, isMobile?1800:600);
 }
 (function birds(){
   const L=$('birds'), cols=[['#7fd8ff','#4cb8ea'],['#ffb38a','#ff8f5c'],['#ffd86b','#f5b942'],['#b79cff','#8f74f0'],['#ff9ec0','#ff6fa5']];
-  const n = isMobile?4:7;
+  const n = isMobile?3:7;
   for(let i=0;i<n;i++){
     const [c1,c2]=cols[i%cols.length], w=rand(40,64), d=document.createElement('div');
     d.className='bird'+(i%3===2?' rev':'');
@@ -536,7 +537,7 @@ if(!reduce){
 })();
 (function bflies(){
   const L=$('bflies'), cols=[['#ff9ec0','#ffd0e3'],['#b79cff','#e0d4ff'],['#ffd86b','#fff0b3']];
-  for(let i=0;i<(isMobile?3:5);i++){
+  for(let i=0;i<(isMobile?2:5);i++){
     const [a,b]=cols[i%3], d=document.createElement('div');
     d.className='bfly'; d.style.cssText=`left:${rand(5,45)}vw;top:${rand(25,75)}vh;--t:${rand(14,24)}s;animation-delay:${-rand(0,14)}s`;
     d.innerHTML=`<svg viewBox="0 0 40 30"><g class="l"><path d="M20 15 Q4 -4 2 12 Q2 24 20 17Z" fill="${a}"/><path d="M20 16 Q8 26 12 29 Q20 28 20 18Z" fill="${b}"/></g><g class="r"><path d="M20 15 Q36 -4 38 12 Q38 24 20 17Z" fill="${a}"/><path d="M20 16 Q32 26 28 29 Q20 28 20 18Z" fill="${b}"/></g><rect x="19" y="9" width="2" height="14" rx="1" fill="#6b4a63"/></svg>`;
@@ -550,7 +551,7 @@ if(!reduce){
   const B=$('bunting'), n=isMobile?9:18, cols=['#ff8fb8','#b79cff','#ffd86b','#7fd8ff','#8fe3b5'];
   for(let i=0;i<n;i++){ const f=document.createElement('i'); f.className='flag'; f.style.cssText=`--c:${cols[i%5]};--d:${(i*.23).toFixed(2)}s`; B.appendChild(f); }
   const S=$('sky');
-  for(let i=0;i<(isMobile?12:22);i++){ const s=document.createElement('i'); s.className='star';
+  for(let i=0;i<(isMobile?8:22);i++){ const s=document.createElement('i'); s.className='star';
     s.style.cssText=`left:${rand(2,96)}vw;top:${rand(4,92)}vh;--s:${rand(8,16)}px;--t:${rand(2.5,5)}s;--d:${-rand(0,5)}s`; S.appendChild(s); }
 })();
 
